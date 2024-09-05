@@ -182,6 +182,13 @@ def setup_parser() -> argparse.ArgumentParser:
         ),
     )
     parser.add_argument(
+        "--system-as-user",
+        default=False,
+        help=(
+            "If True, add system message to beginning of first user message instead, surrounded by <system> </system> tags. "
+        ),
+    )
+    parser.add_argument(
         "--fewshot_as_multiturn",
         action="store_true",
         default=False,
