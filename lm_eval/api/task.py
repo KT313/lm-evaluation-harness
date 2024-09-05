@@ -387,6 +387,7 @@ class Task(abc.ABC):
         rewrite_requests_cache: bool = False,
         system_instruction: Optional[str] = None,
         apply_chat_template: bool = False,
+        system_as_user: bool = False,
         fewshot_as_multiturn: bool = False,
         chat_template: Optional[Callable] = None,
         tokenizer_name: str = "",
@@ -398,6 +399,7 @@ class Task(abc.ABC):
 
         cache_key = f"requests-{self._config.task}-{self.config.num_fewshot}shot-rank{rank}-world_size{world_size}"
         cache_key += "-chat_template" if apply_chat_template else ""
+        cache_key += "-system_as_user" if system_as_user else ""
         cache_key += "-fewshot_as_multiturn" if fewshot_as_multiturn else ""
         cache_key += (
             f"-system_prompt_hash{utils.hash_string(system_instruction)}"
